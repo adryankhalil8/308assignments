@@ -19,15 +19,18 @@ const submissions = [
 // Task 1: Use a for loop to print all assignment names
 // TODO: Loop through the assignments array and console.log each assignment's name
 console.log("=== Task 1: Assignment Names ===");
-// (your code here)
+for (let i = 0; i < assignments.length; i++) {
+    console.log(assignments[i].name);
+}
 
 
 // Task 2: Use a for loop to calculate total possible points
 // TODO: Loop through assignments and sum up all points_possible values
 console.log("\n=== Task 2: Total Possible Points ===");
 let totalPossible = 0;
-// (your code here)
-
+for (let i = 0; i < assignments.length; i++) {
+    totalPossible += assignments[i].points_possible;
+}
 console.log("Total Possible Points:", totalPossible);
 
 // Task 3: Use a for loop to find a specific assignment by id
@@ -36,7 +39,12 @@ console.log("Total Possible Points:", totalPossible);
 console.log("\n=== Task 3: Find Assignment ===");
 let foundAssignment = null;
 const searchId = 3;
-// (your code here)
+for (let i = 0; i < assignments.length; i++) {
+    if (assignments[i].id === searchId) {
+        foundAssignment = assignments[i];
+        break;
+    }
+}
 
 console.log("Found Assignment:", foundAssignment);
 
@@ -45,7 +53,11 @@ console.log("Found Assignment:", foundAssignment);
 console.log("\n=== Task 4: Count Submissions ===");
 let submissionCount = 0;
 const targetLearnerId = 1;
-// (your code here)
+for (let i = 0; i < submissions.length; i++) {
+    if (submissions[i].learner_id === targetLearnerId) {
+        submissionCount++;
+    }
+}
 
 console.log("Learner 1 has", submissionCount, "submissions");
 
@@ -55,16 +67,24 @@ console.log("Learner 1 has", submissionCount, "submissions");
 console.log("\n=== Task 5: While Loop - Sum Until 200 ===");
 let totalScore = 0;
 let index = 0;
-// (your code here)
+let i = 0;
+while(i < submissions.length && totalScore < 200) {
+    totalScore += submissions[i].score;
+    i++;
+}
 
 console.log("Total score:", totalScore);
-console.log("Stopped at index:", index);
+console.log("Stopped at index:", i);
 
 // Task 6: Use a for loop to calculate average score for all submissions
 // TODO: Sum all scores and divide by the number of submissions
 console.log("\n=== Task 6: Average Score ===");
 let sumOfScores = 0;
-// (your code here)
+for (let i = 0; i < submissions.length; i++) {
+    sumOfScores += submissions[i].score;
+    totalPossible += submissions[i].points_possible;
+}
+
 
 const averageScore = sumOfScores / submissions.length;
 console.log("Average Score:", averageScore.toFixed(2));
@@ -73,7 +93,14 @@ console.log("Average Score:", averageScore.toFixed(2));
 // TODO: For each submission, find the matching assignment and calculate percentage
 // Print: "Assignment X: Y%"
 console.log("\n=== Task 7: Submission Percentages ===");
-// (your code here)
+for (let i = 0; i < submissions.length; i++) {
+    for (let j = 0; j < assignments.length; j++) {
+        if (submissions[i].assignment_id === assignments[j].id) {
+            const percentage = submissions[i].score / assignments[j].points_possible * 100;
+            console.log(`Learner ${submissions[i].learner_id} - Assignment ${assignments[j].id}: ${percentage.toFixed(2)}%`);
+        }
+    }
+}
 
 
 // Task 8: Use a while loop with a counter
