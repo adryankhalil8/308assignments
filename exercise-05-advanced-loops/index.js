@@ -25,22 +25,25 @@ const learnerData = {
 // Task 1: Use for...of to iterate through assignments
 // TODO: Use a for...of loop to print each assignment's name
 // This is cleaner than using indices!
-console.log("=== Task 1: For...of Loop ===");
-// (your code here)
-
+for (let i = 0; i < assignments.length; i++) {
+    console.log(assignments[i].name);
+}
 
 // Task 2: Use for...of to calculate total points
 // TODO: Use for...of to sum up all points_possible from assignments
 console.log("\n=== Task 2: Sum with For...of ===");
 let totalPoints = 0;
-// (your code here)
-
+for (const assignment of assignments) {
+    totalPoints += assignment.points_possible;
+}
 console.log("Total Points:", totalPoints);
 
 // Task 3: Use for...in to iterate through object properties
 // TODO: Use for...in to print all properties and values of learnerData
 console.log("\n=== Task 3: For...in Loop ===");
-// (your code here)
+for (const key in learnerData) {
+    console.log(`${key}: ${learnerData[key]}`);
+}
 
 
 // Task 4: Use break to find and stop
@@ -48,7 +51,14 @@ console.log("\n=== Task 3: For...in Loop ===");
 // Once found, store it and break out of the loop
 console.log("\n=== Task 4: Using Break ===");
 let foundAssignment = null;
-// (your code here)
+const searchId = 2;
+
+for (const assignment of assignments) {
+    if (assignment.id === searchId) {
+        foundAssignment = assignment;
+        break;
+    }
+}
 
 console.log("Found:", foundAssignment);
 
@@ -58,23 +68,32 @@ console.log("Found:", foundAssignment);
 // Only print valid assignments
 console.log("\n=== Task 5: Using Continue ===");
 console.log("Valid Assignments:");
-// (your code here)
-
-
+for (const assignment of assignments) {
+    if (assignment.points_possible === 0) {
+        continue;
+    }
+    console.log(assignment.name);
+}
 // Task 6: Use break in a while loop
 // TODO: Create a while loop that processes submissions
 // Break out when you encounter learner_id 2
-console.log("\n=== Task 6: Break in While Loop ===");
+        console.log("\n=== Task 6: Break in While Loop ===");
+
 let i = 0;
-// (your code here)
+let total = 0;
+let totalCount = 0;
 
 
 // Task 7: Use continue to skip specific learner
 // TODO: Loop through submissions with for...of
 // Use continue to skip any submission from learner_id 2
-// Print the rest
 console.log("\n=== Task 7: Continue to Skip Learner 2 ===");
-// (your code here)
+for (const submission of submissions) {
+    if (submission.learner_id === 2) {
+        continue;
+    }
+    console.log(`Learner ${submission.learner_id} - Assignment ${submission.assignment_id}: ${submission.score}`);
+}
 
 
 // Task 8: Combine for...of with conditional logic
@@ -82,12 +101,26 @@ console.log("\n=== Task 7: Continue to Skip Learner 2 ===");
 // For each assignment, check if there's a matching submission
 // Print "Assignment X: Submitted" or "Assignment X: Not Submitted"
 console.log("\n=== Task 8: Check Submission Status ===");
-// (your code here)
-
+console.log("\n=== Task 8: Check Submission Status ===");
+for (const assignment of assignments) {
+    let hasSubmission = false;
+    for (const submission of submissions) {
+        if (submission.assignment_id === assignment.id) {
+            hasSubmission = true;
+            break;
+        }
+    }
+    if (hasSubmission) {
+        console.log(`Assignment ${assignment.id}: Submitted`);
+    } else {
+        console.log(`Assignment ${assignment.id}: Not Submitted`);
+    }
+}
 
 // Task 9: Use for...in on an array (see the difference)
 // TODO: Use for...in on the assignments array and see what it iterates over
 console.log("\n=== Task 9: For...in on Array (Demo) ===");
-// (your code here)
-
+for (const index in assignments) {
+    console.log(`Index ${index}:`, assignments[index].name);
+}
 console.log("Note: for...in gives indices, for...of gives values!");
