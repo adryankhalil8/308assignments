@@ -107,4 +107,7 @@ for (let i = 0; i < submissions.length; i++) {
 // TODO: Create a while loop that prints numbers from 1 to 5
 console.log("\n=== Task 8: While Loop Counter ===");
 let counter = 1;
-// (your code here)
+while (counter <= 5) {
+    console.log(counter);
+    counter++;
+}
